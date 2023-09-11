@@ -13,6 +13,7 @@ project/local-plugins.sbt
 .ensime
 .ensime_cache/
 .sbt-scripted/
+.scalafmt.conf
 local.sbt
 project/
 
