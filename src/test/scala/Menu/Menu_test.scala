@@ -47,6 +47,7 @@ class Menu_test extends AnyFunSpec with Matchers {
           "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
             
         Menu.showGameArea should be(expectedResult)
+        
       }  
     }
   }
