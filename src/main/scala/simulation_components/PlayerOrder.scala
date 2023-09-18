@@ -23,4 +23,7 @@ object PlayerOrder extends scala.collection.mutable.Queue[Player] {
   def current: Player = {
     return this.head
   }
+  def skip: Unit = {
+    
+  }
 }

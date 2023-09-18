@@ -6,7 +6,7 @@ object PlayerHands {
     sb ++= "Player Hands: " + " \n"
     for p <- PlayerOrder.toArray
     do sb ++= p.show + " \n"
-    sb.toString.substring(0, sb.toString.length - 2)
+    sb.toString.substring(0, sb.toString.length - 1)
 
   }
 }
