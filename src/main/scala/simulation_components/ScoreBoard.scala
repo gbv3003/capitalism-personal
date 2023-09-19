@@ -1,7 +1,11 @@
 package simulation_components
-
+/** A simulated component that contains all of the players scores
+  *
+  */
 object Scoreboard {
-
+  /** Shows all of the players' scores
+    *
+    */
   def show = {
     val sb = new StringBuilder("Scores:\n")
     for p <- PlayerOrder.toArray

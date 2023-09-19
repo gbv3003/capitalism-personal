@@ -1,6 +1,12 @@
 package simulation_components
 
+/** A simulation component that displays each player's hand
+  *
+  */
 object PlayerHands {
+  /** Shows each player's hand
+    *
+    */
   def show: String = {
     val sb = new StringBuilder()
     sb ++= "Player Hands: " + " \n"

@@ -1,7 +1,13 @@
 package simulation_components
 
 //******* RANK *******
+/** A simulation component that contains all of the players' ranks
+  *
+  */
 object Ranks {
+  /** Shows all of the players' ranks
+    *
+    */
   def show = {
 
     val sb = new StringBuilder()

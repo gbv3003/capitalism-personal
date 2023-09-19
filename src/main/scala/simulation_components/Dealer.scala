@@ -3,7 +3,13 @@ package simulation_components
 import game_components.Card
 import game_components.Player
 
+/** A simulated Dealer who gives cards out to players
+  *
+  */
 object Dealer {
+  /** Begins the game by giving out a standard hand to each player
+    *
+    */
   def start = {
     val card1 = new Card("Ace")
     val card2 = new Card("King")

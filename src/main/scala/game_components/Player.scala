@@ -12,6 +12,9 @@ class Player(val name: String) {
   var score = 0
   var temp_score = -1
   var rank = "None"
+  /** Shows the player's name and hand
+    *
+    */
   def show: String = {
     val sb = new StringBuilder()
     sb ++= name + " Hand: " + hand.show + "\n"
