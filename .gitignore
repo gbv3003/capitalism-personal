@@ -3,9 +3,8 @@
 
 # sbt specific
 dist/*
-!target/scala-3.1.0/api/index.html
 
-target/*
+target/
 lib_managed/
 src_managed/
 project/boot/

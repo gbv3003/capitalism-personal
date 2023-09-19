@@ -180,6 +180,7 @@ class Menu_test extends AnyFunSpec with Matchers {
         do // Only 15 cards left in player's hands, meaning that 36 turns have been played up to this point
           Menu.doMove
 
+        // Note: The card before was an Ace, so player 1's only option was a bomb.
         Menu.doMove // new feature (***** move played after a bomb is played *****)
 
         Menu.showGameArea should be(expectedResult3)
@@ -219,7 +220,7 @@ class Menu_test extends AnyFunSpec with Matchers {
             "Last Card in Trick: Ace\n" +
             "\n" +
             "President: Player 1\n" +
-            "Vice President:  \n" +
+            "Vice President: Player 3\n" +
             "Middle Man: Player 2\n" +
             "Bum: Player 4\n" +
             "\n" +
@@ -228,8 +229,8 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         val expectedResult_PO_3 = "Player 2, Player 3, Player 4, Player 1"
 
-        for i <- 1 to 73
-        do // Only 19 cards left in player's hands, meaning that 73 turns have been played up to this point (Including the first 52 turns of round one)
+        for i <- 1 to 72
+        do // Only 19 cards left in player's hands, meaning that 72 turns have been played up to this point (Including the first 51 turns of round one)
           Menu.doMove
 
         Menu.showGameArea should be(expectedResult3)
@@ -281,9 +282,8 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         val expectedResult_PO_3 = "Player 1, Player 2, Player 3, Player 4"
 
-        for i <- 1 to 50
-        do // Only 2 cards left in player's hands, meaning that 50 turns have been played up to this point
-          Menu.doMove
+        for i <- 1 to 50 do Menu.doMove
+        // Only 2 cards left in player's hands, meaning that 50 turns have been played up to this point
 
         Menu.showGameArea should be(expectedResult3)
         Menu.showPlayerOrder should be(expectedResult_PO_3)
@@ -298,7 +298,7 @@ class Menu_test extends AnyFunSpec with Matchers {
             "Last Card in Trick: \n" +
             "\n" +
             "President: Player 1\n" +
-            "Vice President:  \n" +
+            "Vice President: Player 3\n" +
             "Middle Man: Player 2\n" +
             "Bum: Player 4\n" +
             "\n" +
@@ -335,18 +335,18 @@ class Menu_test extends AnyFunSpec with Matchers {
             "Scores:\n" +
             "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
 
-        Menu.doTurn
+        Menu.doTurn // Player 2 Plays a "4"
 
         Menu.showGameArea should be(expectedResult1)
 
         val expectedResult_turn2 =
           "Player Hands:  \n" +
-            "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
-            "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 2, \n" +
-            "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 3, 2, \n" +
-            "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
+            "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 2, \n" +
+            "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 2, \n" +
+            "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 3, 2, \n" +
+            "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 4, 2, \n" +
             "\n" +
-            "Last Card in Trick: 4\n" +
+            "Last Card in Trick: 5\n" +
             "\n" +
             "President: None\n" +
             "Vice President: None\n" +
@@ -356,7 +356,7 @@ class Menu_test extends AnyFunSpec with Matchers {
             "Scores:\n" +
             "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
 
-        Menu.doTurn // Player 3 plays a "4"
+        Menu.doTurn // Player 4 plays a "5"
         Menu.showGameArea should be(expectedResult_turn2)
 
       }
@@ -380,11 +380,11 @@ class Menu_test extends AnyFunSpec with Matchers {
             "Bum: Player 4\n" +
             "\n" +
             "Scores:\n" +
-            "Player 1 = 10, Player 2 = 4, Player 3 = 10, Player 4 = 4\n" + 
-            "Player 1 and Player 3 Tie!"+ "\n"
+            "Player 1 = 10, Player 2 = 2, Player 3 = 10, Player 4 = 2\n" +
+            "Player 3 Wins!" + "\n"
 
         Menu.doGame // Four rounds of play, with player 1 and player 3 switching off between president and vice president each round
-
+        // Note: Player 3 Wins because he reached 10 points first, and he got out before player 1. 
         Menu.showGameArea should be(expectedResult)
 
       }
