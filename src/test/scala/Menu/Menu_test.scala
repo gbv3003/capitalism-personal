@@ -384,7 +384,7 @@ class Menu_test extends AnyFunSpec with Matchers {
             "Player 3 Wins!" + "\n"
 
         Menu.doGame // Four rounds of play, with player 1 and player 3 switching off between president and vice president each round
-        // Note: Player 3 Wins because he reached 10 points first, and he got out before player 1. 
+        // Note: Player 3 Wins because he reached 10 points first, and he got out before player 1.
         Menu.showGameArea should be(expectedResult)
 
       }
