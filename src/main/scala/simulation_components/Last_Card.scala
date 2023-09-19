@@ -2,8 +2,13 @@ package simulation_components
 
 import game_components.Card
 import game_components.Player
-
+/** A simulation component that contains the last played card in the trick
+  *
+  */
 object Last_Card {
+  /** Shows the last played card
+    *
+    */
   def show: String = {
     val sb = new StringBuilder()
     sb ++= "Last Card in Trick: " + PlayerOrder.current.hand.discard_show + " \n"
