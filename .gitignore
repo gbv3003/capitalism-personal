@@ -3,8 +3,20 @@
 
 # sbt specific
 dist/*
-
-target/
+src/test/scala/Menu/target
+target/bg-jobs
+target/global-logging
+target/streams
+target/task-temp-directory
+target/test-reports
+target/scala-3.1.0/classes
+target/scala-3.1.0/sync
+target/scala-3.1.0/test-classes
+target/scala-3.1.0/test-sync
+target/scala-3.1.0/test-zinc
+target/scala-3.1.0/update
+target/scala-3.1.0/zinc
+target/scala-3.1.0/capatalism_3-0.0.1.jar
 lib_managed/
 src_managed/
 project/boot/
