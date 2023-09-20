@@ -24,22 +24,18 @@ object Menu {
   }
 
   def initialize: Unit = {
-    println("To be completed.")
   }
 
   def checkForWinner: String = {
-    "To be completed"
+    ""
   }
 
   def doMove: Unit = {
-    println("To be completed.")
   }
 
   def doTurn: Unit = {
-    println("To be completed.")
   }
 
   def doGame: Unit = {
-    println("To be completed.")
   }
 }
