@@ -3,6 +3,7 @@ package game_components
 
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should._
+import javax.smartcardio.Card
 
 class Menu_test extends AnyFunSpec with Matchers {
   describe("The Capitalism Simulation") {
@@ -56,10 +57,28 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         // first, we put the game into an artificial, mid-simulation state
 
-        // add code to change
+        PlayerOrder.current.score += 1
+        PlayerOrder.advance
+        PlayerOrder.current.score += 1
+        PlayerOrder.current.score += 1
+        PlayerOrder.current.temp_score = 3
 
         val expectedResult1 =
-          "" // update this result to reflect the mid-simulation state
+          "Player Hands:  \n" +
+            "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+            "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+            "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+            "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+            "\n" +
+            "Last Card in Trick: \n" +
+            "\n" +
+            "President: Player 2\n" +
+            "Vice President: None\n" +
+            "Middle Man: None\n" +
+            "Bum: None\n" +
+            "\n" +
+            "Scores:\n" +
+            "Player 1 = 1, Player 2 = 2, Player 3 = 0, Player 4 = 0\n" + "\n" 
 
         Menu.showGameArea should be(expectedResult1)
 
@@ -82,6 +101,7 @@ class Menu_test extends AnyFunSpec with Matchers {
             "\n" +
             "Scores:\n" +
             "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
+
         Menu.showGameArea should be(expectedResult2)
 
       }
