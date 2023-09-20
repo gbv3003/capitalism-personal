@@ -3,14 +3,13 @@
 
 # sbt specific
 dist/*
-target
 src/test/scala/Menu/target
 target/bg-jobs
 target/global-logging
 target/streams
 target/task-temp-directory
 target/test-reports
-target/scala-3.1.0/api/
+target/scala-3.1.0/api
 target/scala-3.1.0/classes
 target/scala-3.1.0/sync
 target/scala-3.1.0/test-classes
