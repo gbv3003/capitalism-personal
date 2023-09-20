@@ -27,7 +27,6 @@ class Player(val name: String) {
     *   the card to be played
     */
   def playCard(card: Card): Unit = {
-    println("To be completed")
   }
 
   /** Chooses a card to be played in a players hand. This will always be the
@@ -38,7 +37,6 @@ class Player(val name: String) {
     *   card the card choosen to be played
     */
   def chooseCardPlay = {
-    println("To be completed")
   }
 
   /** Chooses a card to be traded to another player from a players hand. This
@@ -48,7 +46,6 @@ class Player(val name: String) {
     *   card the card choosen to be played
     */
   def chooseCardGive = {
-    println("To be completed")
   }
 
   /** Chooses a card that the player wants from the other player. This will
@@ -59,7 +56,6 @@ class Player(val name: String) {
     *   card the card choosen to be played
     */
   def chooseCardWant = {
-    println("To be completed")
   }
 
   /** Gives a card to another player from a players hand
@@ -70,7 +66,6 @@ class Player(val name: String) {
     *   the player that receives the card
     */
   def giveCard(player: Player, card: Card) = {
-    println("To be completed")
   }
 
   /** Receives a card from another player
@@ -79,6 +74,5 @@ class Player(val name: String) {
     *   the card to be received from another player
     */
   def receiveCard(card: Card) = {
-    println("To be completed")
   }
 }
