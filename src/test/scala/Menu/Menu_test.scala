@@ -167,7 +167,7 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         Menu.doMove // Player 2's move
         Menu.doMove // Player 4's move *** PLAYER 3 SKIPPED ***
-        Menu.doMove // Player 2's move *** PLAYER 2 SKIPPED ***
+        Menu.doMove // Player 2's move *** PLAYER 1 SKIPPED ***
 
         Menu.showGameArea should be(expectedResult2)
         Menu.showPlayerOrder should be(expectedResult_PO_2)

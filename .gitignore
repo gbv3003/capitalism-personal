@@ -9,6 +9,7 @@ target/global-logging
 target/streams
 target/task-temp-directory
 target/test-reports
+target/scala-3.3.0
 target/scala-3.1.0/api
 target/scala-3.1.0/classes
 target/scala-3.1.0/sync
