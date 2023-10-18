@@ -1,5 +1,5 @@
-package simulation_components
-import game_components.Card
+package model.simulation_components
+import model.game_components.Card
 import scala.collection.mutable
 
 object Menu {

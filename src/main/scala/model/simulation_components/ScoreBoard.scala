@@ -1,4 +1,4 @@
-package simulation_components
+package model.simulation_components
 /** A simulated component that contains all of the players scores
   *
   */

@@ -1,4 +1,4 @@
-package game_components
+package model.game_components
 
 import scala.compiletime.ops.string
 import scala.collection.mutable.ArrayBuffer

@@ -1,4 +1,4 @@
-package game_components
+package model.game_components
 
 /** A simulated player who plays capitalism
   *

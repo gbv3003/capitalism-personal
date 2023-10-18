@@ -1,4 +1,4 @@
-package simulation_components
+package model.simulation_components
 
 //******* RANK *******
 /** A simulation component that contains all of the players' ranks

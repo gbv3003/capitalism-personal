@@ -1,4 +1,4 @@
-package simulation_components
+package model.simulation_components
 
 /** A simulation component that displays each player's hand
   *

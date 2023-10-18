@@ -1,6 +1,6 @@
-package simulation_components
+package model.simulation_components
 
-import game_components.Player
+import model.game_components.Player
 
 //******* PLAYER_ORDER *******
 /** A simulation component which creates a queue of all four players

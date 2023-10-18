@@ -1,7 +1,7 @@
-package simulation_components
+package model.simulation_components
 
-import game_components.Card
-import game_components.Player
+import model.game_components.Card
+import model.game_components.Player
 
 /** A simulated Dealer who gives cards out to players
   *

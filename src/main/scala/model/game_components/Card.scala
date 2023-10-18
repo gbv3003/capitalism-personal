@@ -1,4 +1,4 @@
-package game_components
+package model.game_components
 
 //******* Card *******
 /** A card from a deck with values 1-10 and J-A, of suits Clubs, Spades, Hearts, and Diamonds
