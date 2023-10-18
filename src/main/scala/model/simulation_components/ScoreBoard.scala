@@ -19,4 +19,13 @@ object Scoreboard {
 
     sb.toString
   }
+
+  def checkForWinner = {
+    var winner = "none"
+    for p <- PlayerOrder.toArray do 
+      if p.score >= 10 
+        then winner = p.name
+    winner
+
+  }
 }

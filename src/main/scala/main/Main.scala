@@ -1,5 +1,7 @@
 package main
 
+import model._
+
 object GUI {
   
   @main def main(): Unit = {

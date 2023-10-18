@@ -8,10 +8,16 @@ import model.game_components.Player
   */
 object PlayerOrder extends scala.collection.mutable.Queue[Player] {
 
-  this += new Player("Player 1")
-  this += new Player("Player 2")
-  this += new Player("Player 3")
-  this += new Player("Player 4")
+  reset
+
+  def reset: Unit = {
+    this.clear
+    this += new Player("Player 1")
+    this += new Player("Player 2")
+    this += new Player("Player 3")
+    this += new Player("Player 4")
+  }
+  
 
   /** Advances the player order
     *
@@ -40,5 +46,9 @@ object PlayerOrder extends scala.collection.mutable.Queue[Player] {
     */
   def skip: Unit = {
     
+  }
+  
+  def removeCurrent = {
+    val removedPlayer = this.dequeue()
   }
 }

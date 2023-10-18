@@ -12,6 +12,8 @@ class Player(val name: String) {
   var score = 0
   var temp_score = -1
   var rank = "None"
+  var strategy : Strategy = new Default
+
   /** Shows the player's name and hand
     *
     */
@@ -27,16 +29,6 @@ class Player(val name: String) {
     *   the card to be played
     */
   def playCard(card: Card): Unit = {
-  }
-
-  /** Chooses a card to be played in a players hand. This will always be the
-    * lowest card they can play, with a two being played only if they have no
-    * other options.
-    *
-    * @return
-    *   card the card choosen to be played
-    */
-  def chooseCardPlay = {
   }
 
   /** Chooses a card to be traded to another player from a players hand. This

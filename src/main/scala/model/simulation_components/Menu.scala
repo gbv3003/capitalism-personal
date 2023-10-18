@@ -1,11 +1,12 @@
 package model.simulation_components
 import model.game_components.Card
+import model.game_components.Trick
 import scala.collection.mutable
 
 object Menu {
 
   def showPlayerOrder: String = {
-    return PlayerOrder.show
+    PlayerOrder.show
   }
 
   def advancePlayerOrder: Unit = {
@@ -23,11 +24,14 @@ object Menu {
     sb.toString
   }
 
-  def initialize: Unit = {
+  def initialize = {
+    Trick.clear
+    PlayerOrder.reset
+    MoveDirector.reset
   }
 
   def checkForWinner: String = {
-    ""
+    Scoreboard.checkForWinner
   }
 
   def doMove: Unit = {
