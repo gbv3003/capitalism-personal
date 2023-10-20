@@ -11,7 +11,7 @@ object MoveDirector {
   */
   def doMove (player: Player, playersRemaining: Int): Boolean = {
     if !(skip_next) then 
-      var last_card = new Card("",0)
+      var last_card = new Card("",0,"")
       if Trick.nonEmpty then
         last_card = Trick.LastCard
         

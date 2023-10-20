@@ -8,7 +8,7 @@ package model.game_components
   * @param value
   *   the card's value
   */
-class Card(val name : String, val value: Int) {
+class Card(val name : String, val value: Int, val suit : String) {
   /** Shows the card's value
     *
     */
