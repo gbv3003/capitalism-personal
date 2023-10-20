@@ -28,7 +28,13 @@ class Player(val name: String) {
     * @param card
     *   the card to be played
     */
-  def playCard(card: Card): Unit = {
+  def playCard(card_played: Card): Card = {
+    hand.play(card_played)
+    card_played
+  }
+
+  def chooseCardPlay(): Card = {
+    strategy.pickCard(hand)
   }
 
   /** Chooses a card to be traded to another player from a players hand. This

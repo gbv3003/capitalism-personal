@@ -14,7 +14,6 @@ object Menu {
   }
 
   def showGameArea: String = {
-    Dealer.start
     val sb = mutable.StringBuilder()
     sb ++= PlayerHands.show + "\n" + "\n"
     sb ++= Last_Card.show + "\n" + "\n"
@@ -22,24 +21,33 @@ object Menu {
     sb ++= Scoreboard.show + "\n"
 
     sb.toString
+
   }
 
   def initialize = {
     Trick.clear
     PlayerOrder.reset
-    MoveDirector.reset
+    Dealer.start
   }
 
   def checkForWinner: String = {
     Scoreboard.checkForWinner
   }
 
-  def doMove: Unit = {
+  def doMove: Boolean = {
+    return MoveDirector.doMove(PlayerOrder.current, PlayerOrder.length)
   }
 
-  def doTurn: Unit = {
+  import scala.util.control.NonLocalReturns.*
+  def doTurn: Boolean = returning {
+    for i <- 1 to PlayerOrder.length do
+      if doMove then throwReturn(true) // breaks on winner
+    false
   }
 
-  def doGame: Unit = {
+  def doGame: Boolean = returning {
+    for i <- 1 to 400 do
+      if doMove then throwReturn(true)
+    false
   }
 }

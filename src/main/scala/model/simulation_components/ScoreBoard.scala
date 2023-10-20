@@ -8,7 +8,7 @@ object Scoreboard {
     */
   def show = {
     val sb = new StringBuilder("Scores:\n")
-    for p <- PlayerOrder.toArray
+    for p <- PlayerOrder.toArray.sortBy(_.name)
     do sb ++= p.name + " = " + p.score + ", "
 
     sb.delete(sb.toString.length - 2, sb.toString.length)

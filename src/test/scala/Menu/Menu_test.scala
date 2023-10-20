@@ -28,6 +28,8 @@ class Menu_test extends AnyFunSpec with Matchers {
       it(
         "can show the game area, including the cards in each player's hand, the previous card that was played in the trick, the current rank of each player, and the total scores of each player. "
       ) {
+
+        model.simulation_components.Menu.initialize
         model.simulation_components.Menu.advancePlayerOrder
         model.simulation_components.Menu.advancePlayerOrder
         model.simulation_components.Menu.advancePlayerOrder
@@ -56,7 +58,7 @@ class Menu_test extends AnyFunSpec with Matchers {
       ) {
 
         // first, we put the game into an artificial, mid-simulation state
-
+        model.simulation_components.Menu.initialize
         model.simulation_components.PlayerOrder.current.score += 1
         model.simulation_components.PlayerOrder.advance
         model.simulation_components.PlayerOrder.current.score += 1

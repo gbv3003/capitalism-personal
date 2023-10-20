@@ -1,6 +1,7 @@
 package model.game_components
 
 import scala.collection.mutable.ArrayBuffer
+import model.simulation_components.PlayerOrder
 
 /** A hand of cards that a player possesses
   *
@@ -20,7 +21,16 @@ class Hand extends scala.collection.mutable.ArrayBuffer[Card]{
   }
 
   def play(played_card: Card) = {
+    println(PlayerOrder.current.name + " this is my hand before playing the above card:"+ played_card.name)
+    for card <- this do println(card.name)
+
+
     this -= played_card
+
+    println(PlayerOrder.current.name + " this is my hand after playing the above card:"+ played_card.name)
+    for card <- this do println(card.name)
+
+    Trick += played_card
   }
   /** Shows the hand of a certain player
     *

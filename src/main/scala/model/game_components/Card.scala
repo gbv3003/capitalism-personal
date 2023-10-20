@@ -8,13 +8,13 @@ package model.game_components
   * @param value
   *   the card's value
   */
-class Card(val value: String) {
+class Card(val name : String, val value: Int) {
   /** Shows the card's value
     *
     */
   def show: String = {
     val sb = new StringBuilder("")
-    sb ++= value
+    sb ++= name
     sb.toString.substring(0, sb.toString.length)
   }
 }
