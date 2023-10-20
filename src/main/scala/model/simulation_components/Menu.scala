@@ -25,7 +25,7 @@ object Menu {
   }
 
   def initialize = {
-    Trick.clear
+    Trick.ClearTrick
     PlayerOrder.reset
     Dealer.start
   }
@@ -35,7 +35,7 @@ object Menu {
   }
 
   def doMove: Boolean = {
-    return MoveDirector.doMove(PlayerOrder.current, PlayerOrder.length)
+    return MoveDirector.doMoveNoSkip(PlayerOrder.current, PlayerOrder.length)
   }
 
   import scala.util.control.NonLocalReturns.*

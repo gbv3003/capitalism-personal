@@ -11,11 +11,11 @@ object MoveDirector {
   */
   def doMove (player: Player, playersRemaining: Int): Boolean = {
     if !(skip_next) then 
-      var last_card = new Card("",0,"")
-      if Trick.nonEmpty then
-        last_card = Trick.LastCard
+      val last_card = Trick.LastCard
         
-      val card_played = player.playCard(player.chooseCardPlay())
+      
+      val card_played = player.chooseCardPlay()
+      player.playCard(card_played)
       println(player.name +  " played " + card_played.name)
       if last_card.value == card_played.value then skip_next = true
     
@@ -28,4 +28,12 @@ object MoveDirector {
     true
   }
 
+  def doMoveNoSkip (player: Player, playersRemaining: Int): Boolean = {      
+    val card_played = player.chooseCardPlay()
+    player.playCard(card_played)
+    println(player.name +  " played " + card_played.name)        
+    PlayerOrder.advance
+    println(PlayerOrder.show)
+    true
+  }
 }

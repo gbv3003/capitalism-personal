@@ -16,6 +16,6 @@ import scala.language.postfixOps
 */
 class Default extends Strategy {
   def pickCard (player_hand:Hand): Card ={
-    player_hand.minBy(_.value)
+    player_hand.last
   }
 }
