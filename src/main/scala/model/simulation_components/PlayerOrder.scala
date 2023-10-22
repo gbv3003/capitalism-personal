@@ -41,8 +41,5 @@ object PlayerOrder extends scala.collection.mutable.Queue[Player] {
   def current: Player = {
     return this.head
   }
-  
-  def removeCurrent = {
-    val removedPlayer = this.dequeue()
-  }
+
 }

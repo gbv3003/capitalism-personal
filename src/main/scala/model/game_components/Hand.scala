@@ -16,6 +16,7 @@ class Hand extends scala.collection.mutable.ArrayBuffer[Card]{
     * @param new_card
     *   the new card to be put in someone's hand
     */
+
   def add(new_card: Card) = {
     this += new_card
   }
@@ -29,7 +30,11 @@ class Hand extends scala.collection.mutable.ArrayBuffer[Card]{
   def show: String = {
     // iterate through hand, build string and return string
     val sb = new StringBuilder()
-    for card <- this
+    val ordered = this.filter(_.value != 15).sortBy(_.value).reverse
+    val countOfTwos = this.count(_.value == 15)
+    val descendingOrderedWithBombs = ordered ++ ArrayBuffer.fill(countOfTwos)(Card("2",15,"spade"))
+
+    for card <- descendingOrderedWithBombs
     do sb ++= card.show + ", "
     sb.toString.substring(0, sb.toString.length)
   }

@@ -11,7 +11,7 @@ class Player(val name: String) {
   var hand = new Hand
   var score = 0
   var temp_score = -1
-  var rank = "None"
+  var inRound : Boolean = true
   var strategy : Strategy = new Default
 
   /** Shows the player's name and hand
@@ -43,7 +43,8 @@ class Player(val name: String) {
     * @return
     *   card the card choosen to be played
     */
-  def chooseCardGive = {
+  def chooseCardGive(): Card = {
+    strategy.giveCard(hand)
   }
 
   /** Chooses a card that the player wants from the other player. This will
@@ -53,24 +54,25 @@ class Player(val name: String) {
     * @return
     *   card the card choosen to be played
     */
-  def chooseCardWant = {
+  def chooseCardWant(opp_hand:Hand): Card ={
+    strategy.wantCard(opp_hand)
   }
 
   /** Gives a card to another player from a players hand
     *
-    * @param card
+    * @param card_out
     *   the card to be given to another player
+    * @param card_in
+    *   the card to be gained from another player
     * @param player
     *   the player that receives the card
     */
-  def giveCard(player: Player, card: Card) = {
-  }
+  def tradeCard(player: Player, card_out: Card, card_in: Card): Unit = {
+    hand.remove(card_out)
+    player.hand.add(card_out)
 
-  /** Receives a card from another player
-    *
-    * @param card
-    *   the card to be received from another player
-    */
-  def receiveCard(card: Card) = {
+    hand.add(card_in)
+    player.hand.remove(card_in)
+
   }
 }

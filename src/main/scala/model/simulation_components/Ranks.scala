@@ -8,12 +8,13 @@ object Ranks {
   /** Shows all of the players' ranks
     *
     */
-  def show = {
+    def show = {
 
     val sb = new StringBuilder()
     var condition = 0
     for p <- PlayerOrder.toArray do
       if p.temp_score == 3 then
+
         sb ++= "President: " + p.name + "\n"
         condition = 1
     if condition == 0 then sb ++= "President: None" + "\n"

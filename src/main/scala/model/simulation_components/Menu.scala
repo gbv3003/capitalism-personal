@@ -35,7 +35,9 @@ object Menu {
   }
 
   def doMove: Boolean = {
-    return MoveDirector.doMove(PlayerOrder.current, PlayerOrder.length)
+    while !(PlayerOrder.current.inRound) do
+      PlayerOrder.advance
+    MoveDirector.doMove(PlayerOrder.current, PlayerOrder.count(_.inRound))
   }
 
   import scala.util.control.NonLocalReturns.*
@@ -48,7 +50,7 @@ object Menu {
   }
 
   def doGame: Boolean = returning {
-    for i <- 1 to 400 do
+    for i <- 1 to 500 do
       if doMove then throwReturn(true)
     false
   }
