@@ -18,7 +18,7 @@ trait View {
   
   def update_PlayerOrder: Unit
 
-  def update_GameArea: Unit
+  //def update_GameArea: Unit
   
   def showWinner(result: String): Unit
 
