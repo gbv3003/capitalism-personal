@@ -5,17 +5,17 @@ import scala.collection.mutable.ArrayBuffer
 object Trick extends scala.collection.mutable.ArrayBuffer[Card]{
 
 
-    def ClearTrick: Unit = {
+    def clearTrick: Unit = {
         this.clear
         var first_card = new Card("",0,"")
         this += first_card
     }
 
-    def LastCard: Card = {
-        this(this.length-1)
+    def lastCard: Card = {
+        this.last
     }
 
-    def AcceptCard(card:Card): Unit = {
+    def acceptCard(card:Card): Unit = {
         this += card
     }
 

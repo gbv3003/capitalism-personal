@@ -25,7 +25,7 @@ object Menu {
   }
 
   def initialize = {
-    Trick.ClearTrick
+    Trick.clearTrick
     PlayerOrder.reset
     Dealer.start
   }
@@ -35,13 +35,15 @@ object Menu {
   }
 
   def doMove: Boolean = {
-    return MoveDirector.doMoveNoSkip(PlayerOrder.current, PlayerOrder.length)
+    return MoveDirector.doMove(PlayerOrder.current, PlayerOrder.length)
   }
 
   import scala.util.control.NonLocalReturns.*
   def doTurn: Boolean = returning {
     for i <- 1 to PlayerOrder.length do
-      if doMove then throwReturn(true) // breaks on winner
+      println(i)
+      val doMovebool = doMove
+      if doMovebool then throwReturn(true) // breaks on winner
     false
   }
 

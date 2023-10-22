@@ -1,3 +1,5 @@
 1697811142771:testOnly simulation_components.Menu_tests
 1697811188793:clear
 1697811766088:test
+1697812362019:sbt test
+1697812363182:test

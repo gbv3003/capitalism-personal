@@ -12,8 +12,8 @@ object Last_Card {
     */
   def show: String = {
     val sb = new StringBuilder()
-    if Trick.LastCard.value != 0 then 
-      sb ++= "Last Card in Trick: " + Trick.LastCard.name + " \n"
+    if Trick.lastCard.value != 0 then 
+      sb ++= "Last Card in Trick: " + Trick.lastCard.name + " \n"
       sb.toString.substring(0, sb.toString.length - 2)
     else     
       sb ++= "Last Card in Trick:  \n"

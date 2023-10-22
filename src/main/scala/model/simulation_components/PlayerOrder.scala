@@ -41,12 +41,6 @@ object PlayerOrder extends scala.collection.mutable.Queue[Player] {
   def current: Player = {
     return this.head
   }
-  /** Skips the current player
-    *
-    */
-  def skip: Unit = {
-    
-  }
   
   def removeCurrent = {
     val removedPlayer = this.dequeue()

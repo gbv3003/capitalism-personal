@@ -28,9 +28,9 @@ class Player(val name: String) {
     * @param card
     *   the card to be played
     */
-  def playCard(card_played: Card) = {
-    hand.play(card_played)
-    card_played
+  def playCard(card_played: Card): Unit = {
+    hand.remove(card_played)
+    Trick.acceptCard(card_played)
   }
 
   def chooseCardPlay(): Card = {
