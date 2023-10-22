@@ -43,7 +43,6 @@ object Menu {
   import scala.util.control.NonLocalReturns.*
   def doTurn: Boolean = returning {
     for i <- 1 to PlayerOrder.length do
-      println(i)
       val doMovebool = doMove
       if doMovebool then throwReturn(true) // breaks on winner
     false

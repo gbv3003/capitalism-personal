@@ -34,7 +34,7 @@ class Controller(model: Model, view: View) {
   def initialize = Action("Initialize") {
     model.menu.initialize
     view.update_PlayerOrder
-    //view.update_GameArea
+    view.update_GameArea
   }
 
   /**  at any point in the game simulation, determine whether any player has won the game, and return the winning player's name or "none"
@@ -48,7 +48,7 @@ class Controller(model: Model, view: View) {
   def doMove = Action("Do Move") {
     val result = model.menu.doMove
     view.update_PlayerOrder
-    //view.update_GameArea
+    view.update_GameArea
     if result then view.showWinner(model.menu.checkForWinner)     
   }
   
@@ -57,7 +57,7 @@ class Controller(model: Model, view: View) {
   def doTurn = Action("Do Turn") {    
     val result = model.menu.doTurn
     view.update_PlayerOrder
-    //view.update_GameArea
+    view.update_GameArea
     if result then view.showWinner(model.menu.checkForWinner)   
   }
   
@@ -66,7 +66,7 @@ class Controller(model: Model, view: View) {
   def doGame = Action("Do Game") {
     val result = model.menu.doGame
     view.update_PlayerOrder
-    //view.update_GameArea
+    view.update_GameArea
     if result then view.showWinner(model.menu.checkForWinner)   
   }
 

@@ -82,10 +82,10 @@ class SimpleView extends MainFrame with View {
     playerOrder.text = controller.get.showPlayerOrder
   }
   
-  /*def update_GameArea: Unit = {
+  def update_GameArea: Unit = {
     gameText.text = controller.get.showGameArea
   }
-  */
+  
   def showWinner(result: String): Unit = {
     Dialog.showMessage(this, result, title="And the winner is...")    
   }
