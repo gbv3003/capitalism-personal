@@ -4,9 +4,9 @@ import model._
 import view._
 import controller._
 
-/**  Game simulation for the GridMaster4 game, a turn-based, 4-player game.
+/**  Game simulation for Capitalism, a four-player card game
   */
-object GridMaster4 {
+object Capitalism {
   
   @main def main(): Unit = {
       

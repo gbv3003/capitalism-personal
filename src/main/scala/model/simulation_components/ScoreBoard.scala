@@ -19,7 +19,9 @@ object Scoreboard {
 
     sb.toString
   }
-
+  /** Checks to see if a player has won the game
+    *
+    */
   def checkForWinner = {
     var winner = "none"
     for p <- PlayerOrder.toArray do 

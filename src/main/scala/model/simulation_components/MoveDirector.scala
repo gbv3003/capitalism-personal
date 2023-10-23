@@ -3,9 +3,10 @@ import model.game_components.Player
 import model.game_components.Trick
 import model.game_components.Card
 import scala.collection.mutable.ArrayBuffer
-
+/** A simulated component that moves players
+    *
+    */
 object MoveDirector {
-
   var skip_next: Boolean = false
   var bomb_played: Boolean = false
   var move_counter: Int = 0
@@ -53,7 +54,9 @@ object MoveDirector {
       println("on turn "+ move_counter)
     return_bool
   }
-
+  /** Starts a new round
+  *
+  */
   def startNewRound(): Boolean = {
     val pointsDistribution = Array(3, 2, 1, 0)
     for i <- 0 until playerOutOrder.length do 
