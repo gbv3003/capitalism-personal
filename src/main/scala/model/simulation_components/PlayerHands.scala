@@ -6,6 +6,8 @@ package model.simulation_components
 object PlayerHands {
   /** Shows each player's hand
     *
+    * @constructor 
+    *   creates a hand
     */
   def show: String = {
     val sb = new StringBuilder()
