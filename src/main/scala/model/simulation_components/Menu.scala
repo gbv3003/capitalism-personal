@@ -41,16 +41,17 @@ object Menu {
   }
 
   import scala.util.control.NonLocalReturns.*
+
   def doTurn: Boolean = returning {
-    for i <- 1 to PlayerOrder.length do
-      val doMovebool = doMove
-      if doMovebool then throwReturn(true) // breaks on winner
-    false
+    for i <- 1 to PlayerOrder.length  do
+      if !(doMove) then throwReturn(false) // breaks on winner
+    true
   }
 
-  def doGame: Boolean = returning {
-    for i <- 1 to 500 do
-      if doMove then throwReturn(true)
-    false
+  def doGame: Boolean =  {
+    var m_bool = doMove
+    while m_bool do
+      m_bool = doMove
+    m_bool
   }
 }

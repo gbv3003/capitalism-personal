@@ -15,10 +15,10 @@ object MoveDirector {
   */
   def doMove (player: Player, playersRemaining: Int): Boolean = {
     move_counter += 1
-
+    var return_bool = true 
     if playersRemaining == 1 then 
       playerOutOrder += player
-      startNewRound()
+      return_bool = startNewRound()
 
     else if !(skip_next) then  
       if bomb_played then 
@@ -37,30 +37,32 @@ object MoveDirector {
 
       if last_card.value == card_played.value then skip_next = true
       if card_played.value == 15 then 
-        for i <- 1 to PlayerOrder.length - 1  do 
-        PlayerOrder.advance
+        for i <- 1 to PlayerOrder.length - 1  do PlayerOrder.advance
         bomb_played = true
       }
       catch
       {
-      case e: Exception => None
+      case e: Exception => 
       }
       
     else if skip_next then 
       skip_next = false
     
     PlayerOrder.advance
-    false
+    return_bool
   }
 
-  def startNewRound() = {
+  def startNewRound(): Boolean = {
     val pointsDistribution = Array(3, 2, 1, 0)
     for i <- 0 until playerOutOrder.length do 
       val player = playerOutOrder(i)
       player.hand.clear()
       player.inRound = true
-      player.temp_score = pointsDistribution(i)
       player.score = player.score + pointsDistribution(i)
+      if player.score >= 10 then return false
+      player.temp_score = pointsDistribution(i)
+
+
 
     val president = playerOutOrder(0)
     val vicePresident = playerOutOrder(1)
@@ -76,6 +78,7 @@ object MoveDirector {
     vicePresident.tradeCard(middleMan,vicePresident.chooseCardGive(),vicePresident.chooseCardWant(middleMan.hand))
 
     playerOutOrder = ArrayBuffer()
+    true
 
   }
 

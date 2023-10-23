@@ -15,7 +15,7 @@ object Scoreboard {
     sb ++= "\n"
 
     if PlayerOrder.current.score == 10
-    then sb ++= PlayerOrder.current.name + " Wins!\n"
+    then sb ++= PlayerOrder.current.name + " Wins!"
 
     sb.toString
   }

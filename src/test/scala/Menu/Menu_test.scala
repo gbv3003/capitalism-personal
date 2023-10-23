@@ -250,11 +250,11 @@ class Menu_test extends AnyFunSpec with Matchers {
             "Scores:\n" +
             "Player 1 = 3, Player 2 = 1, Player 3 = 2, Player 4 = 0\n" + "\n"
 
-        val expectedResult_PO_3 = "Player 4, Player 1, Player 2, Player 3"
+        val expectedResult_PO_3 = "Player 1, Player 2, Player 3, Player 4"
 
         for i <- 1 to 140 do 
           model.simulation_components.Menu.doMove
-
+        model.simulation_components.Menu.doMove
         model.simulation_components.Menu.showGameArea should be(expectedResult3)
         model.simulation_components.Menu.showPlayerOrder should be(expectedResult_PO_3)
 
@@ -389,21 +389,21 @@ class Menu_test extends AnyFunSpec with Matchers {
         model.simulation_components.Menu.initialize
         val expectedResult =
           "Player Hands:  \n" +
-            "Player 1 Hand: \n" +
-            "Player 2 Hand: 3 \n" +
-            "Player 3 Hand: \n" +
-            "Player 4 Hand: \n" +
-            "\n" +
-            "Last Card in Trick: 3\n" +
-            "\n" +
-            "President: Player 3\n" +
-            "Vice President: Player 1\n" +
-            "Middle Man: Player 2\n" +
-            "Bum: Player 4\n" +
-            "\n" +
-            "Scores:\n" +
-            "Player 1 = 10, Player 2 = 2, Player 3 = 10, Player 4 = 2\n" +
-            "Player 3 Wins!" + "\n"
+          "Player 1 Hand: \n" +
+          "Player 2 Hand: 5, 4, 3, \n" +
+          "Player 3 Hand: \n" +
+          "Player 4 Hand: \n" +
+          "\n" +
+          "Last Card in Trick: Ace\n" +
+          "\n" +
+          "President: Player 1\n" +
+          "Vice President: Player 3\n" +
+          "Middle Man: Player 4\n" +
+          "Bum: Player 2\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 8, Player 2 = 1, Player 3 = 10, Player 4 = 2\n" +
+          "Player 3 Wins!" + "\n"
 
         model.simulation_components.Menu.doGame // Four rounds of play, with player 1 and player 3 switching off between president and vice president each round
         // Note: Player 3 Wins because he reached 10 points first, and he got out before player 1.

@@ -49,7 +49,7 @@ class Controller(model: Model, view: View) {
     val result = model.menu.doMove
     view.update_PlayerOrder
     view.update_GameArea
-    if result then view.showWinner(model.menu.checkForWinner)     
+    if !(result) then view.showWinner(model.menu.checkForWinner)     
   }
   
   /**  performs DO MOVE four times (or more specfically, the length of the player order), as well as CHECK FOR WINNER at appropriate times
@@ -58,7 +58,7 @@ class Controller(model: Model, view: View) {
     val result = model.menu.doTurn
     view.update_PlayerOrder
     view.update_GameArea
-    if result then view.showWinner(model.menu.checkForWinner)   
+    if !(result) then view.showWinner(model.menu.checkForWinner)   
   }
   
   /**  performs DO TURN until the game is won
@@ -67,7 +67,7 @@ class Controller(model: Model, view: View) {
     val result = model.menu.doGame
     view.update_PlayerOrder
     view.update_GameArea
-    if result then view.showWinner(model.menu.checkForWinner)   
+    if !(result) then view.showWinner(model.menu.checkForWinner)   
   }
 
   /**  terminates the application
