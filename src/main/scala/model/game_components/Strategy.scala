@@ -20,11 +20,15 @@ class Default extends Strategy {
   def pickCard (player_hand:Hand): Card ={
     player_hand.filter(card => card.value >= Trick.lastCard.value).minBy(_.value)
   }
-
+  /** Gives a card to a player
+    *
+    */
   def giveCard (player_hand:Hand): Card ={
     player_hand.minBy(_.value)
   }
-
+  /** Determines what card a player wants based on their strategy
+    *
+    */
   def wantCard (trading_player_hand:Hand): Card ={
     trading_player_hand.maxBy(_.value)
   }
