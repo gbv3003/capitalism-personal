@@ -9,13 +9,13 @@ object MoveDirector {
   var skip_next: Boolean = false
   var bomb_played: Boolean = false
   var move_counter: Int = 0
-  var playerOutOrder: ArrayBuffer[Player] = ArrayBuffer()
+  var playerOutOrder: ArrayBuffer[Player] = ArrayBuffer().empty
 
   /**  Checks if the next player is skipped or not
   */
   def doMove (player: Player, playersRemaining: Int): Boolean = {
     move_counter += 1
-    var return_bool = true 
+    var return_bool = false 
     if playersRemaining == 1 then 
       playerOutOrder += player
       return_bool = startNewRound()
@@ -42,13 +42,15 @@ object MoveDirector {
       }
       catch
       {
-      case e: Exception => 
+      case e: Exception => None
       }
-      
     else if skip_next then 
       skip_next = false
     
     PlayerOrder.advance
+    if return_bool then
+      println("return_bool is booling")
+      println("on turn "+ move_counter)
     return_bool
   }
 
@@ -59,7 +61,9 @@ object MoveDirector {
       player.hand.clear()
       player.inRound = true
       player.score = player.score + pointsDistribution(i)
-      if player.score >= 10 then return false
+      if player.score >= 10 then 
+        playerOutOrder = ArrayBuffer().empty
+        return true
       player.temp_score = pointsDistribution(i)
 
 
@@ -77,8 +81,8 @@ object MoveDirector {
     
     vicePresident.tradeCard(middleMan,vicePresident.chooseCardGive(),vicePresident.chooseCardWant(middleMan.hand))
 
-    playerOutOrder = ArrayBuffer()
-    true
+    playerOutOrder = ArrayBuffer().empty
+    false
 
   }
 

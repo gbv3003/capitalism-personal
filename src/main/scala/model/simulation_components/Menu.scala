@@ -44,14 +44,15 @@ object Menu {
 
   def doTurn: Boolean = returning {
     for i <- 1 to PlayerOrder.length  do
-      if !(doMove) then throwReturn(false) // breaks on winner
-    true
+      if doMove then throwReturn(true) // breaks on winner
+    false
   }
 
-  def doGame: Boolean =  {
-    var m_bool = doMove
-    while m_bool do
-      m_bool = doMove
-    m_bool
+  def doGame: Boolean = returning {
+    {
+    for i <- 1 to 500 do
+      if doMove then throwReturn(true)
+    false
+  }
   }
 }
