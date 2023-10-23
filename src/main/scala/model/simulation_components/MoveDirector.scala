@@ -48,9 +48,6 @@ object MoveDirector {
       skip_next = false
     
     PlayerOrder.advance
-    if return_bool then
-      println("return_bool is booling")
-      println("on turn "+ move_counter)
     return_bool
   }
 
