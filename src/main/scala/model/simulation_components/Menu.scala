@@ -19,6 +19,10 @@ object Menu {
   def advancePlayerOrder: Unit = {
     PlayerOrder.advance
   }
+
+  def showStrategies: String = {
+    "To be completed"
+  }
   /** Shows the players' hands, their ranks, the last card that was played, and the scoreboard
     *
     */

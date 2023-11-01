@@ -75,4 +75,8 @@ class Player(val name: String) {
     player.hand.remove(card_in)
 
   }
+
+  def setStrategy(strategy: Strategy) = {
+
+  }
 }

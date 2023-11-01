@@ -10,7 +10,7 @@ At the start of every round, all cards are evenly distributed to each player. Fo
 ## Strategies:
 There are four distinct strategies that the simulation players can employ.
 
-### Lowest-Card First
+### Default / Lowest-Card First
 The player will play the lowest card possible at every opportunity on the trick, while saving their bomb cards until the very end. The player will compare the cards in their hand to the card last played in the trick, then play their lowest card that is greater than or equal to the last card played in the trick.
 
 ### Highest-Card First

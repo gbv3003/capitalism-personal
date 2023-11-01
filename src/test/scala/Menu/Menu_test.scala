@@ -4,6 +4,9 @@ package game_components
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should._
 import javax.smartcardio.Card
+import model.game_components.HighestCardFirst
+import model.game_components.BombFirstThenLow
+import model.game_components.MaximizeSkipping
 
 class Menu_test extends AnyFunSpec with Matchers {
   describe("The Capitalism Simulation") {
@@ -36,20 +39,20 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         val expectedResult =
           "Player Hands:  \n" +
-            "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "\n" +
-            "Last Card in Trick: \n" +
-            "\n" +
-            "President: None\n" +
-            "Vice President: None\n" +
-            "Middle Man: None\n" +
-            "Bum: None\n" +
-            "\n" +
-            "Scores:\n" +
-            "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
+          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "\n" +
+          "Last Card in Trick: \n" +
+          "\n" +
+          "President: None\n" +
+          "Vice President: None\n" +
+          "Middle Man: None\n" +
+          "Bum: None\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
 
         model.simulation_components.Menu.showGameArea should be(expectedResult)
       }
@@ -67,20 +70,20 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         val expectedResult1 =
           "Player Hands:  \n" +
-            "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "\n" +
-            "Last Card in Trick: \n" +
-            "\n" +
-            "President: Player 2\n" +
-            "Vice President: None\n" +
-            "Middle Man: None\n" +
-            "Bum: None\n" +
-            "\n" +
-            "Scores:\n" +
-            "Player 1 = 1, Player 2 = 2, Player 3 = 0, Player 4 = 0\n" + "\n" 
+          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "\n" +
+          "Last Card in Trick: \n" +
+          "\n" +
+          "President: Player 2\n" +
+          "Vice President: None\n" +
+          "Middle Man: None\n" +
+          "Bum: None\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 1, Player 2 = 2, Player 3 = 0, Player 4 = 0\n" + "\n" 
 
         model.simulation_components.Menu.showGameArea should be(expectedResult1)
 
@@ -89,20 +92,20 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         val expectedResult2 =
           "Player Hands:  \n" +
-            "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-            "\n" +
-            "Last Card in Trick: \n" +
-            "\n" +
-            "President: None\n" +
-            "Vice President: None\n" +
-            "Middle Man: None\n" +
-            "Bum: None\n" +
-            "\n" +
-            "Scores:\n" +
-            "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
+          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "\n" +
+          "Last Card in Trick: \n" +
+          "\n" +
+          "President: None\n" +
+          "Vice President: None\n" +
+          "Middle Man: None\n" +
+          "Bum: None\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
 
         model.simulation_components.Menu.showGameArea should be(expectedResult2)
 
@@ -114,7 +117,191 @@ class Menu_test extends AnyFunSpec with Matchers {
         model.simulation_components.Menu.checkForWinner should be("none")
 
         model.simulation_components.PlayerOrder.current.score += 10
+
         model.simulation_components.Menu.checkForWinner should be("Player 1")
+      }
+
+      // ******* SET PLAYER STRATEGY *******
+      it("can SET PLAYER STRATEGY to one of four strategies") {
+
+        model.simulation_components.Menu.initialize
+
+        model.simulation_components.PlayerOrder.current.strategy.name should be ("Default")
+
+        model.simulation_components.PlayerOrder.current.setStrategy(new HighestCardFirst)
+
+        model.simulation_components.PlayerOrder.current.strategy.name should be ("Highest Card First")
+
+      }
+
+      // ******* SHOW STRATEGIES *******
+      it("can SHOW STRATEGIES for all players in the game") {
+
+        model.simulation_components.Menu.initialize
+
+        val expectedResult1 =
+          "Player Strategies:\n" +
+          "Player 1:  Default\n" +
+          "Player 2:  Default\n" +
+          "Player 3:  Default\n" +
+          "Player 4:  Default\n"
+      
+        model.simulation_components.Menu.showStrategies should be(expectedResult1)
+
+        model.simulation_components.Menu.advancePlayerOrder
+        model.simulation_components.PlayerOrder.current.setStrategy(new HighestCardFirst)
+        model.simulation_components.Menu.advancePlayerOrder
+        model.simulation_components.PlayerOrder.current.setStrategy(new BombFirstThenLow)
+        model.simulation_components.Menu.advancePlayerOrder
+        model.simulation_components.PlayerOrder.current.setStrategy(new MaximizeSkipping)
+
+        val expectedResult2 =
+          "Player Strategies:\n" +
+          "Player 1:  Default/Lowest Card First\n" +
+          "Player 2:  Highest Card First\n" +
+          "Player 3:  Bomb First, then Lowest-Card First\n" +
+          "Player 4:  Maximize Skipping\n"
+      
+        model.simulation_components.Menu.showStrategies should be(expectedResult2)
+
+
+
+      }
+
+      //******* HIGHEST CARD FIRST STRATEGY *******
+      it(
+        "can DO MOVE for the HIGHEST CARD FIRST STRATEGY, playing the highest non-two card from a players hand"
+      ) {
+
+        model.simulation_components.Menu.initialize
+        model.simulation_components.PlayerOrder.current.setStrategy(new HighestCardFirst)
+        model.simulation_components.Menu.doMove // Player 1's move
+
+        val expectedResult =
+          "Player Hands:  \n" +
+          "Player 1 Hand: King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "\n" +
+          "Last Card in Trick: Ace\n" +
+          "\n" +
+          "President: None\n" +
+          "Vice President: None\n" +
+          "Middle Man: None\n" +
+          "Bum: None\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
+
+        model.simulation_components.Menu.showGameArea should be(expectedResult)
+    
+      }
+
+      //******* BOMB FIRST THEN LOW STRATEGY *******
+      it(
+        "can DO MOVE for the BOMB FIRST THEN LOW strategy, playing the bomb from a players hand first, then their lowest card"
+      ) {
+
+        model.simulation_components.Menu.initialize
+        model.simulation_components.PlayerOrder.current.setStrategy(new BombFirstThenLow)
+        model.simulation_components.Menu.doMove // Player 1's first move
+
+        val expectedResult1 =
+          "Player Hands:  \n" +
+          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, \n" +
+          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "\n" +
+          "Last Card in Trick: 2\n" +
+          "\n" +
+          "President: None\n" +
+          "Vice President: None\n" +
+          "Middle Man: None\n" +
+          "Bum: None\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
+
+        model.simulation_components.Menu.showGameArea should be(expectedResult1)
+
+        model.simulation_components.Menu.doMove // Player 1's second move, playing their 3 after playing their bomb
+    
+        val expectedResult2 =
+          "Player Hands:  \n" +
+          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, \n" +
+          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "\n" +
+          "Last Card in Trick: 3\n" +
+          "\n" +
+          "President: None\n" +
+          "Vice President: None\n" +
+          "Middle Man: None\n" +
+          "Bum: None\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
+
+        model.simulation_components.Menu.showGameArea should be(expectedResult2)
+
+      }
+
+      //******* MAXIMIZE SKIPPING STRATEGY *******
+      it(
+        "can DO MOVE for the MAXIMIZE SKIPPING strategy, playing a card from a players hand only if a player is skipped as a result"
+      ) {
+
+        model.simulation_components.Menu.initialize
+        model.simulation_components.PlayerOrder.current.setStrategy(new MaximizeSkipping)
+        model.simulation_components.Menu.doMove // Player 1's first move, they volunarily skip their turn 
+
+        val expectedResult1 =
+          "Player Hands:  \n" +
+          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "\n" +
+          "Last Card in Trick: \n" +
+          "\n" +
+          "President: None\n" +
+          "Vice President: None\n" +
+          "Middle Man: None\n" +
+          "Bum: None\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
+
+        model.simulation_components.Menu.showGameArea should be(expectedResult1)
+
+        model.simulation_components.Menu.doMove // Player 2's turn playing a 3
+        model.simulation_components.Menu.doMove // Player 3's turn playing a 3
+        model.simulation_components.Menu.doMove // Player 4's turn SKIPPED
+        model.simulation_components.Menu.doMove // Player 1's turn-- They play their 3 only because playing it will skip player 2
+    
+        val expectedResult2 =
+          "Player Hands:  \n" +
+          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, \n" +
+          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
+          "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
+          "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "\n" +
+          "Last Card in Trick: 3\n" +
+          "\n" +
+          "President: None\n" +
+          "Vice President: None\n" +
+          "Middle Man: None\n" +
+          "Bum: None\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
+
+        model.simulation_components.Menu.showGameArea should be(expectedResult2)
+
+    
       }
 
       //******* DO MOVE *******
@@ -183,20 +370,20 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         val expectedResult3 =
           "Player Hands:  \n" +
-            "Player 1 Hand: King, 9, 5, \n" +
-            "Player 2 Hand: Ace, 10, 6, 2, \n" +
-            "Player 3 Hand: Jack, 7, 3, 2, \n" +
-            "Player 4 Hand: Queen, 8, 4, 2, \n" +
-            "\n" +
-            "Last Card in Trick: 2\n" +
-            "\n" +
-            "President: None\n" +
-            "Vice President: None\n" +
-            "Middle Man: None\n" +
-            "Bum: None\n" +
-            "\n" +
-            "Scores:\n" +
-            "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
+          "Player 1 Hand: King, 9, 5, \n" +
+          "Player 2 Hand: Ace, 10, 6, 2, \n" +
+          "Player 3 Hand: Jack, 7, 3, 2, \n" +
+          "Player 4 Hand: Queen, 8, 4, 2, \n" +
+          "\n" +
+          "Last Card in Trick: 2\n" +
+          "\n" +
+          "President: None\n" +
+          "Vice President: None\n" +
+          "Middle Man: None\n" +
+          "Bum: None\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
 
         val expectedResult_PO_3 = "Player 1, Player 2, Player 3, Player 4"
 
@@ -289,20 +476,20 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         val expectedResult3 =
           "Player Hands:  \n" +
-            "Player 1 Hand: \n" +
-            "Player 2 Hand: 2, \n" +
-            "Player 3 Hand: \n" +
-            "Player 4 Hand: 2, \n" +
-            "\n" +
-            "Last Card in Trick: 4\n" +
-            "\n" +
-            "President: None\n" +
-            "Vice President: None\n" +
-            "Middle Man: None\n" +
-            "Bum: None\n" +
-            "\n" +
-            "Scores:\n" +
-            "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
+          "Player 1 Hand: \n" +
+          "Player 2 Hand: 2, \n" +
+          "Player 3 Hand: \n" +
+          "Player 4 Hand: 2, \n" +
+          "\n" +
+          "Last Card in Trick: 4\n" +
+          "\n" +
+          "President: None\n" +
+          "Vice President: None\n" +
+          "Middle Man: None\n" +
+          "Bum: None\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 0, Player 2 = 0, Player 3 = 0, Player 4 = 0\n" + "\n"
 
         val expectedResult_PO_3 = "Player 1, Player 2, Player 3, Player 4"
 
@@ -312,21 +499,21 @@ class Menu_test extends AnyFunSpec with Matchers {
         model.simulation_components.Menu.showPlayerOrder should be(expectedResult_PO_3)
 
         val expectedResult4 =
-        "Player Hands:  \n" +
-         "Player 1 Hand: Ace, Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 2, 2, \n" +
-         "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 3, \n" +
-         "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, 2, \n" +
-         "Player 4 Hand: King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 4, 3, 3, \n" +
-         "\n" +
-         "Last Card in Trick: \n" +
-         "\n" +
-         "President: Player 1\n" +
-         "Vice President: Player 3\n" +
-         "Middle Man: Player 2\n" +
-         "Bum: Player 4\n" +
-         "\n" +
-         "Scores:\n" +
-         "Player 1 = 3, Player 2 = 1, Player 3 = 2, Player 4 = 0\n" + "\n"
+          "Player Hands:  \n" +
+          "Player 1 Hand: Ace, Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 2, 2, \n" +
+          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 3, \n" +
+          "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, 2, \n" +
+          "Player 4 Hand: King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 4, 3, 3, \n" +
+          "\n" +
+          "Last Card in Trick: \n" +
+          "\n" +
+          "President: Player 1\n" +
+          "Vice President: Player 3\n" +
+          "Middle Man: Player 2\n" +
+          "Bum: Player 4\n" +
+          "\n" +
+          "Scores:\n" +
+          "Player 1 = 3, Player 2 = 1, Player 3 = 2, Player 4 = 0\n" + "\n"
 
         model.simulation_components.Menu.doMove
         model.simulation_components.Menu.doMove // new feature (***** MOVE when the second to last player plays their last card in the first round *****)
