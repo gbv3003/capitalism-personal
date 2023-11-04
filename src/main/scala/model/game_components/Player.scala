@@ -33,7 +33,7 @@ class Player(val name: String) {
     Trick.acceptCard(card_played)
   }
 
-  def chooseCardPlay(): Card = {
+  def chooseCardPlay(): Option[Card] = {
     strategy.pickCard(hand)
   }
 
@@ -76,7 +76,7 @@ class Player(val name: String) {
 
   }
 
-  def setStrategy(strategy: Strategy) = {
-
+  def setStrategy(new_strategy: Strategy) = {
+      strategy = new_strategy
   }
 }

@@ -21,7 +21,9 @@ object Menu {
   }
 
   def showStrategies: String = {
-    "To be completed"
+    val sb = mutable.StringBuilder()
+    sb ++= Strategies.show + "\n"
+    sb.toString
   }
   /** Shows the players' hands, their ranks, the last card that was played, and the scoreboard
     *
@@ -42,7 +44,9 @@ object Menu {
   def initialize = {
     Trick.clearTrick
     PlayerOrder.reset
+    MoveDirector.reset
     Dealer.start
+
   }
   /** Checks to see if any player has won
     *
@@ -54,6 +58,7 @@ object Menu {
     *
     */
   def doMove: Boolean = {
+    println(PlayerOrder.current.name)
     while !(PlayerOrder.current.inRound) do
       PlayerOrder.advance
     MoveDirector.doMove(PlayerOrder.current, PlayerOrder.count(_.inRound))

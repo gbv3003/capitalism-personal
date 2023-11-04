@@ -12,6 +12,12 @@ object MoveDirector {
   var move_counter: Int = 0
   var playerOutOrder: ArrayBuffer[Player] = ArrayBuffer().empty
 
+  def reset =
+    skip_next = false
+    bomb_played = false
+    move_counter = 0
+    playerOutOrder = ArrayBuffer().empty
+
   /**  Checks if the next player is skipped or not
   */
   def doMove (player: Player, playersRemaining: Int): Boolean = {
@@ -27,26 +33,31 @@ object MoveDirector {
         bomb_played = false
 
       val last_card = Trick.lastCard
-      try
-      {
       val card_played = player.chooseCardPlay()
-      player.playCard(card_played)
-      if player.hand.isEmpty then
-        player.inRound = false
-        playerOutOrder += player
-        
+      card_played match
+        case Some(card) =>
+          println(player.name + "played" + card.name)
+          player.playCard(card)
+          if player.hand.isEmpty then
+            player.inRound = false
+            playerOutOrder += player
+            
 
-      if last_card.value == card_played.value then skip_next = true
-      if card_played.value == 15 then 
-        for i <- 1 to PlayerOrder.length - 1  do PlayerOrder.advance
-        bomb_played = true
-      }
-      catch
-      {
-      case e: Exception => None
-      }
+          if last_card.value == card.value then 
+            skip_next = true
+
+          if card.value == 15 then 
+            for i <- 1 to PlayerOrder.length - 1  do PlayerOrder.advance
+            bomb_played = true
+
+        case None => 
+          println(player.name + "passed their turn")
+          None
+      
     else if skip_next then 
       skip_next = false
+      println(player.name + "got skipped")
+
     
     PlayerOrder.advance
     return_bool

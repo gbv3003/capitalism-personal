@@ -126,7 +126,7 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         model.simulation_components.Menu.initialize
 
-        model.simulation_components.PlayerOrder.current.strategy.name should be ("Default")
+        model.simulation_components.PlayerOrder.current.strategy.name should be ("Default/Lowest Card First")
 
         model.simulation_components.PlayerOrder.current.setStrategy(new HighestCardFirst)
 
@@ -141,10 +141,10 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         val expectedResult1 =
           "Player Strategies:\n" +
-          "Player 1:  Default\n" +
-          "Player 2:  Default\n" +
-          "Player 3:  Default\n" +
-          "Player 4:  Default\n"
+          "Player 1: Default/Lowest Card First\n" +
+          "Player 2: Default/Lowest Card First\n" +
+          "Player 3: Default/Lowest Card First\n" +
+          "Player 4: Default/Lowest Card First\n"
       
         model.simulation_components.Menu.showStrategies should be(expectedResult1)
 
@@ -157,10 +157,10 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         val expectedResult2 =
           "Player Strategies:\n" +
-          "Player 1:  Default/Lowest Card First\n" +
-          "Player 2:  Highest Card First\n" +
-          "Player 3:  Bomb First, then Lowest-Card First\n" +
-          "Player 4:  Maximize Skipping\n"
+          "Player 1: Default/Lowest Card First\n" +
+          "Player 2: Highest Card First\n" +
+          "Player 3: Bomb First, then Lowest-Card First\n" +
+          "Player 4: Maximize Skipping\n"
       
         model.simulation_components.Menu.showStrategies should be(expectedResult2)
 
@@ -257,6 +257,7 @@ class Menu_test extends AnyFunSpec with Matchers {
         model.simulation_components.Menu.initialize
         model.simulation_components.PlayerOrder.current.setStrategy(new MaximizeSkipping)
         model.simulation_components.Menu.doMove // Player 1's first move, they volunarily skip their turn 
+    
 
         val expectedResult1 =
           "Player Hands:  \n" +
@@ -284,7 +285,7 @@ class Menu_test extends AnyFunSpec with Matchers {
     
         val expectedResult2 =
           "Player Hands:  \n" +
-          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, \n" +
+          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
           "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
           "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
           "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
@@ -310,6 +311,7 @@ class Menu_test extends AnyFunSpec with Matchers {
       ) {
 
         model.simulation_components.Menu.initialize
+
         model.simulation_components.Menu.doMove // new feature Player 1's move(***** first move *****)
 
         val expectedResult1 =
