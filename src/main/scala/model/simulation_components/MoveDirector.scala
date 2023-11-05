@@ -10,6 +10,7 @@ object MoveDirector {
   var skip_next: Boolean = false
   var bomb_played: Boolean = false
   var move_counter: Int = 0
+  var playersInRound: Array[Player] = PlayerOrder.toArray
   var playerOutOrder: ArrayBuffer[Player] = ArrayBuffer().empty
 
   def reset =
@@ -36,7 +37,6 @@ object MoveDirector {
       val card_played = player.chooseCardPlay()
       card_played match
         case Some(card) =>
-          println(player.name + "played" + card.name)
           player.playCard(card)
           if player.hand.isEmpty then
             player.inRound = false
@@ -51,12 +51,10 @@ object MoveDirector {
             bomb_played = true
 
         case None => 
-          println(player.name + "passed their turn")
           None
       
     else if skip_next then 
       skip_next = false
-      println(player.name + "got skipped")
 
     
     PlayerOrder.advance

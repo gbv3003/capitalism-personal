@@ -58,7 +58,6 @@ object Menu {
     *
     */
   def doMove: Boolean = {
-    println(PlayerOrder.current.name)
     while !(PlayerOrder.current.inRound) do
       PlayerOrder.advance
     MoveDirector.doMove(PlayerOrder.current, PlayerOrder.count(_.inRound))

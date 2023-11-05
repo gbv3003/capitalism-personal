@@ -14,6 +14,7 @@ class Player(val name: String) {
   var inRound : Boolean = true
   var strategy : Strategy = new Default
 
+
   /** Shows the player's name and hand
     *
     */

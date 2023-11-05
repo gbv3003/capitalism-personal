@@ -22,6 +22,10 @@ class Controller(model: Model, view: View) {
     model.menu.showPlayerOrder
   }
 
+  def changeStrategy(player:game_components.Player, strategy:game_components.Strategy): Unit = {
+    player.setStrategy(strategy)
+  }
+
   /**   moves the player who is currently "up" to the end of the playing order, and advances the "next" player to be "up"
   */
   def advanceOrder = Action("Advance") {
@@ -35,6 +39,7 @@ class Controller(model: Model, view: View) {
     model.menu.initialize
     view.update_PlayerOrder
     view.update_GameArea
+    view.update_Strategies
   }
 
   /**  at any point in the game simulation, determine whether any player has won the game, and return the winning player's name or "none"

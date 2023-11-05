@@ -1,7 +1,22 @@
 package view
 
 import scala.swing._
+import scala.swing.event._
 import controller._
+import model.simulation_components.PlayerOrder
+import model.game_components.Default
+import model.game_components.HighestCardFirst
+import model.game_components.BombFirstThenLow
+import model.game_components.MaximizeSkipping
+import model.game_components.Strategy
+import BorderPanel.Position._
+import java.awt.geom.Rectangle2D
+import java.awt.geom.Ellipse2D
+import java.awt.Color
+import scala.collection.mutable.ArrayBuffer
+import java.awt.image.BufferedImage
+import scala.swing.Orientation
+
 
 /**  Provides a basic Scala Swing GUI with buttons for game control commands and
  * textAreas for the PlayerOrder and GameArea.
@@ -38,8 +53,36 @@ class SimpleView extends MainFrame with View {
 
  
   object strategyPanel extends GridPanel(5, 5) {
-    contents += new Label("Strategies")
-    contents += new Label("All players use the default strategy")
+   contents += new Label("Strategies")
+
+    val strategyComboBoxes = collection.mutable.ListBuffer.empty[ComboBox[Strategy]] // Use the Strategy type
+
+    for (p <- model.simulation_components.PlayerOrder.toArray.sortBy(_.name)) do
+      val playerLabel = new Label(p.name + ": ")
+      val strategies = Seq(new Default, new HighestCardFirst, new BombFirstThenLow, new MaximizeSkipping) 
+      val strategyComboBox = new ComboBox(strategies) {
+        renderer = ListView.Renderer(_.name) 
+        preferredSize = new Dimension(150, 20)
+      }
+
+      strategyComboBoxes += strategyComboBox
+
+      val playerPanel = new FlowPanel() {
+        contents += playerLabel
+        contents += strategyComboBox
+      }
+      listenTo(strategyComboBox.selection)
+      reactions += {
+        case SelectionChanged(`strategyComboBox`) => 
+          def wantedPlayer = PlayerOrder.toArray.find(_.name == p.name)
+          wantedPlayer match
+            case Some(player) => player.setStrategy(strategyComboBox.selection.item)
+            case None => None
+    
+      }
+      
+      contents += playerPanel
+
   }
 
   // MainFrame contents panel
@@ -85,7 +128,11 @@ class SimpleView extends MainFrame with View {
   def update_GameArea: Unit = {
     gameText.text = controller.get.showGameArea
   }
-  
+
+  def update_Strategies: Unit = {
+     for i <- strategyPanel.strategyComboBoxes do
+      i.selection.index = 0
+  }
   def showWinner(result: String): Unit = {
     Dialog.showMessage(this, result, title="And the winner is...")    
   }
