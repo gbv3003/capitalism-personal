@@ -20,7 +20,7 @@ The player will play the highest card possible at every opportunity on the trick
 The player will play the bomb cards in their hand first, then the rest of their cards from lowest possible to highest possible. After playing all the bomb cards in their hand, the player will compare the cards in their hand to the cards last played in the trick, then play their lowest card that is greater than or equal to the last card played in the trick.
 
 ### Maximize Skipping
-The player will pass on their turn and not play a card unless they can match the last card played on the trick, skipping the next player in the queue. The player will compare the last card played in the trick to the cards in their hand and only play a card if the value of the card matches the value of the last card played in the trick.
+The player will always play the same value of the last card played in the trick, if they are able to. If they are not able to play the same value, they will play their lowest card. 
 
 ## Objective:
 

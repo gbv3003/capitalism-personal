@@ -23,8 +23,19 @@ object MoveDirector {
   */
   def doMove (player: Player, playersRemaining: Int): Boolean = {
     move_counter += 1
-    var return_bool = false 
-    if playersRemaining == 1 then 
+    var return_bool = false
+
+    var playable_cards: ArrayBuffer[Card] = ArrayBuffer().empty
+    for p <- PlayerOrder.toArray do
+      p.chooseCardPlay() match
+        case Some(card) => playable_cards += card
+        case None => None
+
+    if playable_cards.isEmpty then
+      Trick.acceptCard(new Card("",0,""))
+
+
+    else if playersRemaining == 1 then 
       playerOutOrder += player
       return_bool = startNewRound()
 

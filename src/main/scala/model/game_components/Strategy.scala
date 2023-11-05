@@ -83,7 +83,12 @@ class MaximizeSkipping extends Strategy {
     val skipCard = player_hand.find(_.value == Trick.lastCard.value)
     if skipCard.isDefined then 
       Some(skipCard.get)
-    else None
+    else
+      val validCards = player_hand.filter(card => card.value >= Trick.lastCard.value)
+
+      if validCards.nonEmpty then
+        Some(validCards.minBy(_.value))
+      else None
    
   }
 }

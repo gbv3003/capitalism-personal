@@ -7,6 +7,7 @@ import javax.smartcardio.Card
 import model.game_components.HighestCardFirst
 import model.game_components.BombFirstThenLow
 import model.game_components.MaximizeSkipping
+import model.game_components.Default
 
 class Menu_test extends AnyFunSpec with Matchers {
   describe("The Capitalism Simulation") {
@@ -255,18 +256,19 @@ class Menu_test extends AnyFunSpec with Matchers {
       ) {
 
         model.simulation_components.Menu.initialize
-        model.simulation_components.PlayerOrder.current.setStrategy(new MaximizeSkipping)
-        model.simulation_components.Menu.doMove // Player 1's first move, they volunarily skip their turn 
+        model.simulation_components.Menu.doMove // Player 1's first move, they play their 3
+        model.simulation_components.PlayerOrder.current.setStrategy(new MaximizeSkipping) // setting player 2's strategy to maximize skip
+        model.simulation_components.Menu.doMove // Player 2's first move, they play their Ace because it is a skip card
     
 
         val expectedResult1 =
           "Player Hands:  \n" +
-          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
-          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
+          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
+          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
           "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
           "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
           "\n" +
-          "Last Card in Trick: \n" +
+          "Last Card in Trick: 3\n" +
           "\n" +
           "President: None\n" +
           "Vice President: None\n" +
@@ -278,19 +280,20 @@ class Menu_test extends AnyFunSpec with Matchers {
 
         model.simulation_components.Menu.showGameArea should be(expectedResult1)
 
-        model.simulation_components.Menu.doMove // Player 2's turn playing a 3
-        model.simulation_components.Menu.doMove // Player 3's turn playing a 3
-        model.simulation_components.Menu.doMove // Player 4's turn SKIPPED
-        model.simulation_components.Menu.doMove // Player 1's turn-- They play their 3 only because playing it will skip player 2
+        model.simulation_components.Menu.doMove // skip player 3
+        model.simulation_components.Menu.advancePlayerOrder // skip player 4
+        model.simulation_components.PlayerOrder.current.setStrategy(new HighestCardFirst) // Setting player 1's strategy to high card
+        model.simulation_components.Menu.doMove // Player 1's turn they play their Ace
+        model.simulation_components.Menu.doMove // Player 2's turn-- They play their Ace only because playing it will skip player 2
     
         val expectedResult2 =
           "Player Hands:  \n" +
-          "Player 1 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
-          "Player 2 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
-          "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
+          "Player 1 Hand: King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
+          "Player 2 Hand: King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 2, \n" +
+          "Player 3 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
           "Player 4 Hand: Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2, \n" +
           "\n" +
-          "Last Card in Trick: 3\n" +
+          "Last Card in Trick: Ace\n" +
           "\n" +
           "President: None\n" +
           "Vice President: None\n" +
