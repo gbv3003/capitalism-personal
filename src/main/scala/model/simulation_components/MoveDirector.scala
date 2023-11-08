@@ -31,7 +31,7 @@ object MoveDirector {
         case Some(card) => playable_cards += card
         case None => None
 
-    if playable_cards.isEmpty then
+    if playable_cards.isEmpty && playersRemaining>1 then 
       Trick.acceptCard(new Card("",0,""))
 
 
@@ -60,6 +60,7 @@ object MoveDirector {
           if card.value == 15 then 
             for i <- 1 to PlayerOrder.length - 1  do PlayerOrder.advance
             bomb_played = true
+            if player.hand.isEmpty then Trick.acceptCard(new Card("",0,""))
 
         case None => 
           None

@@ -62,7 +62,7 @@ class SimpleView extends MainFrame with View {
       val strategies = Seq(new Default, new HighestCardFirst, new BombFirstThenLow, new MaximizeSkipping) 
       val strategyComboBox = new ComboBox(strategies) {
         renderer = ListView.Renderer(_.name) 
-        preferredSize = new Dimension(150, 20)
+        preferredSize = new Dimension(180, 20)
       }
 
       strategyComboBoxes += strategyComboBox
