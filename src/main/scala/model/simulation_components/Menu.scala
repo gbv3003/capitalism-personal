@@ -77,7 +77,7 @@ object Menu {
     */
   def doGame: Boolean = returning {
     {
-    for i <- 1 to 500 do
+    for i <- 1 to 1000 do
       if doMove then throwReturn(true)
     false
   }

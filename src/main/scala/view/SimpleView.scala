@@ -74,7 +74,7 @@ class SimpleView extends MainFrame with View {
       listenTo(strategyComboBox.selection)
       reactions += {
         case SelectionChanged(`strategyComboBox`) => 
-          def wantedPlayer = PlayerOrder.toArray.find(_.name == p.name)
+          val wantedPlayer = PlayerOrder.toArray.find(_.name == p.name)
           wantedPlayer match
             case Some(player) => player.setStrategy(strategyComboBox.selection.item)
             case None => None

@@ -27,7 +27,7 @@ object MoveDirector {
 
     var playable_cards: ArrayBuffer[Card] = ArrayBuffer().empty
     for p <- PlayerOrder.toArray do
-      p.chooseCardPlay() match
+      p.chooseCardPlay(Trick.lastCard) match
         case Some(card) => playable_cards += card
         case None => None
 
@@ -45,14 +45,13 @@ object MoveDirector {
         bomb_played = false
 
       val last_card = Trick.lastCard
-      val card_played = player.chooseCardPlay()
+      val card_played = player.chooseCardPlay(last_card)
       card_played match
         case Some(card) =>
           player.playCard(card)
           if player.hand.isEmpty then
             player.inRound = false
             playerOutOrder += player
-            
 
           if last_card.value == card.value then 
             skip_next = true

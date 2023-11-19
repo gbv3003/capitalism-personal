@@ -1,5 +1,7 @@
 package model.game_components
 
+import model.game_components.Trick.lastCard
+
 /** A simulated player who plays capitalism
   *
   * @constructor
@@ -34,8 +36,8 @@ class Player(val name: String) {
     Trick.acceptCard(card_played)
   }
 
-  def chooseCardPlay(): Option[Card] = {
-    strategy.pickCard(hand)
+  def chooseCardPlay(lastCardInTrick: Card): Option[Card] = {
+    strategy.pickCard(hand,lastCardInTrick)
   }
 
   /** Chooses a card to be traded to another player from a players hand. This
