@@ -65,6 +65,10 @@ class Controller(model: Model, view: View) {
     view.update_GameArea
     if result then view.showWinner(model.menu.checkForWinner)   
   }
+
+  def randomness = Action("Create Random"){
+    
+  }
   
   /**  performs DO TURN until the game is won
   */
