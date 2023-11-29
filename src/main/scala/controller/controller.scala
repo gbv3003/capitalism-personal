@@ -67,7 +67,7 @@ class Controller(model: Model, view: View) {
   }
 
   def randomness = Action("Create Random"){
-    
+  
   }
   
   /**  performs DO TURN until the game is won

@@ -44,13 +44,31 @@ class SimpleView extends MainFrame with View {
     contents ++= Seq(initialize_Btn, checkWinner_Btn, doMove_Btn, doTurn_Btn, doGame_Btn)
     border = Swing.EmptyBorder(10, 10, 10, 10)
   }
-
+  var flippedCard = new CardPanel
+  val hiddenDeck = new HiddenCardPanel
+  val deckSpaces = new BoxPanel(Orientation.Horizontal) {
+    //contents += flippedCard   
+    background = Color.green
+    contents += hiddenDeck
+    background = Color.green
+    preferredSize = new Dimension(254,198)
+  }
   import java.awt.Font
   object gameText extends TextArea {
     font = new Font ("Monospaced", Font.BOLD , 12)
   }
   object gameAreaPanel extends ScrollPane(gameText)
 
+  
+  val cardSpaces = new BorderPanel {    
+    layout += new Label("P1 play") -> West      
+    layout += new Label("P2 play") -> North
+    layout += new Label("P3 play") -> East
+    layout += new Label("P4 play") -> South
+    layout += deckSpaces -> Center      
+    background = Color.green
+
+  }
  
   object strategyPanel extends GridPanel(5, 5) {
    contents += new Label("Strategies")
@@ -85,15 +103,115 @@ class SimpleView extends MainFrame with View {
 
   }
 
+  val playerHands = new PlayerHands
+ 
+  object cardAreaPanel extends BorderPanel{
+    layout += cardSpaces -> Center
+    layout += playerHands(0) -> West
+    layout += playerHands(1) -> North
+    layout += playerHands(2) -> East
+    layout += playerHands(3) -> South
+    background = Color.darkGray
+  }
+
   // MainFrame contents panel
   import BorderPanel.Position._
   object borderPanel extends BorderPanel {
     layout += playerOrderPanel -> North
     layout += gameControlsPanel -> West
-    layout += gameAreaPanel -> Center
-    layout += strategyPanel -> South
+    layout += gameAreaPanel -> East
+    layout += strategyPanel -> South   
+    layout += cardAreaPanel -> Center
   }
+  //******* CARDPANEL *******  
+  class CardPanel extends Panel {
+
+    var image = javax.imageio.ImageIO.read(new java.io.File("resources/empty.jpg"))
+    
+    def showAsEmpty : Unit = {
+      image = javax.imageio.ImageIO.read(new java.io.File("resources/empty.jpg"))
+      this.repaint()
+    }
+    
+    /*def changeCard(card : model.game_components.Card) : Unit = {
+      image = javax.imageio.ImageIO.read(new java.io.File("resources/" + card.value + card.suit + ".jpg"))
+      this.repaint() 
+    }
+    */
+    
+    override def paint(g: Graphics2D) : Unit = {
+      g.drawImage(image, 50, 48, null)
+    }
+  }
+
+  //******* HIDDENCARDPANEL *******   
+  class HiddenCardPanel extends Panel {
+
+    var image = javax.imageio.ImageIO.read(new java.io.File("resources/back.jpg"))
+     
+    def showAsEmpty : Unit = {
+      image = javax.imageio.ImageIO.read(new java.io.File("resources/empty.jpg"))
+      this.repaint()
+    }
+    
+    def showAsHidden : Unit = {
+      image = javax.imageio.ImageIO.read(new java.io.File("resources/back.jpg"))
+      this.repaint()
+    }
+    
+    override def paint(g: Graphics2D) : Unit = {
+      g.drawImage(image, 54, 48, null)
+    }
+  }     
   
+  //******* PLAYERHANDPANEL ******* 
+  class PlayerHandPanel(orientation : Char) extends Panel {
+
+    preferredSize = new Dimension(72,96)
+
+    var images = new ArrayBuffer[BufferedImage]
+    images += javax.imageio.ImageIO.read(new java.io.File("resources/empty.jpg"))
+    
+    def showAsEmpty : Unit = {
+      images.clear
+      images += javax.imageio.ImageIO.read(new java.io.File("resources/empty.jpg"))
+      this.repaint()
+    }
+    
+    def showCards(cards : ArrayBuffer[model.game_components.Card]) : Unit = {
+      images.clear
+      for (card <- cards) {
+        images += javax.imageio.ImageIO.read(new java.io.File("resources/" + card.value + card.suit + ".jpg"))
+      }
+      var i = 0
+      for (i <- 1 to 5){
+        images += javax.imageio.ImageIO.read(new java.io.File("resources/" + i + "s" + ".jpg"))
+      }
+      super.repaint() 
+    }
+    
+    override def paint(g: Graphics2D) : Unit = {
+      var offset = 36
+      for (image <- images) {
+        if (orientation == 'v') g.drawImage(image, 0, offset, null)
+        else g.drawImage(image, offset+72, 0, null)
+        offset += 30
+      }      
+    }    
+  } 
+
+    //******* PLAYERHANDS ******* 
+  class PlayerHands extends ArrayBuffer[PlayerHandPanel] {
+
+    this += new PlayerHandPanel('v')
+    this += new PlayerHandPanel('h')
+    this += new PlayerHandPanel('v')
+    this += new PlayerHandPanel('h') 
+    
+    def reset : Unit = {    
+      for panel <- this yield panel.showAsEmpty      
+    }
+  }
   title = "My GUI"
   contents = borderPanel
   centerOnScreen()
@@ -109,6 +227,7 @@ class SimpleView extends MainFrame with View {
     super.init(controller)
 
     update_PlayerOrder
+    update_frame
     //update_GameArea
     
     advancePO_Btn.action = controller.advanceOrder
@@ -135,6 +254,9 @@ class SimpleView extends MainFrame with View {
   }
   def showWinner(result: String): Unit = {
     Dialog.showMessage(this, result, title="And the winner is...")    
+  }
+  def update_frame : Unit = {
+    //MainFrame.repaint()
   }
 
 }
