@@ -18,7 +18,7 @@ object Dealer {
     val suits : ArrayBuffer[String] = ArrayBuffer("h","c","s","d")
     val names : ArrayBuffer[String] = ArrayBuffer("2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace").reverse
     val values : ArrayBuffer[Int] = ArrayBuffer(15,3,4,5,6,7,8,9,10,11,12,13,14).reverse
-    val deck :  ArrayBuffer[Card] = ArrayBuffer().empty
+    var deck :  ArrayBuffer[Card] = ArrayBuffer().empty
     for i <- 0 until 4 do
         for j <- 0 until 13 do 
           deck += new Card(names(j),values(j),suits(i))
@@ -37,7 +37,7 @@ object Dealer {
       for i <- 0 until PlayerOrder.length do
         for card <- deck.take(numCardsperHand) do 
           PlayerOrder.current.hand.add(card)
-        deck.drop(numCardsperHand)
+        deck = deck.drop(numCardsperHand)
         PlayerOrder.advance
       
 

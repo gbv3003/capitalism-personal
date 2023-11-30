@@ -18,7 +18,9 @@ object Trick extends scala.collection.mutable.ArrayBuffer[Card]{
     *
     */
     def lastCard: Card = {
-        this.last
+        if this.nonEmpty then 
+            this.last
+        else new Card("",0,"")
     }
     /** Accepts a card to be added to the trick
     *   @param card
