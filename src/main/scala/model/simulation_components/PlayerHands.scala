@@ -15,6 +15,5 @@ object PlayerHands {
     for p <- PlayerOrder.toArray.sortBy(_.name) do 
       sb ++= p.show + " \n"
     sb.toString.substring(0, sb.toString.length - 1)
-
   }
 }

@@ -3,6 +3,9 @@ package controller
 import model._
 import scala.swing._
 import view._
+import model.simulation_components.Dealer
+import scala.collection.mutable
+
 
 /**  Controller for an MVC architecture
   *  @param model Model for the MVC architecture 
@@ -26,6 +29,11 @@ class Controller(model: Model, view: View) {
     player.setStrategy(strategy)
   }
 
+  def random_toggle= Action("Shuffling?") {
+    if Dealer.random then Dealer.random = false
+    else Dealer.random = true
+  }
+
   /**   moves the player who is currently "up" to the end of the playing order, and advances the "next" player to be "up"
   */
   def advanceOrder = Action("Advance") {
@@ -46,6 +54,15 @@ class Controller(model: Model, view: View) {
   */
   def checkForWinner = Action("Winner?") {    
     view.showWinner(model.menu.checkForWinner)
+  }
+
+  def showgameText: String = {
+    val sb = mutable.StringBuilder()
+    sb ++= simulation_components.Ranks.show + "\n"
+    sb ++= simulation_components.Scoreboard.show + "\n"
+
+    sb.toString
+
   }
 
   /**  the player who is currently "up" in the player order performs all move actions, and the player order advances

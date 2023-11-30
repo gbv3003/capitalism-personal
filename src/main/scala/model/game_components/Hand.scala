@@ -32,11 +32,23 @@ class Hand extends scala.collection.mutable.ArrayBuffer[Card]{
     val sb = new StringBuilder()
     val ordered = this.filter(_.value != 15).sortBy(_.value).reverse
     val countOfTwos = this.count(_.value == 15)
-    val descendingOrderedWithBombs = ordered ++ ArrayBuffer.fill(countOfTwos)(Card("2",15,"spade"))
+    val descendingOrderedWithBombs = ordered ++ ArrayBuffer.fill(countOfTwos)(Card("2",15,"s"))
 
     for card <- descendingOrderedWithBombs
     do sb ++= card.show + ", "
     sb.toString.substring(0, sb.toString.length)
   }
+
+  def return_ordered: Hand = {
+    val ordered_hand: Hand = new Hand
+    val ordered = this.filter(_.value != 15).sortBy(_.value).reverse
+    val twos: ArrayBuffer[Card] = this.filter(_.value == 15)
+
+    var descendingOrderedWithBombs = ordered    
+    for two <- twos do 
+      descendingOrderedWithBombs += two
+    for card <- descendingOrderedWithBombs do ordered_hand.add(card)
+    ordered_hand
+  } 
 
 }
